@@ -1,0 +1,109 @@
+
+.chat-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+.messages {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.message {
+  margin: 5px 0;
+}
+input {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #0056b3;
+}
+
+/* @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #EBF4FF !important;
+}
+
+.chat-container {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+  max-width: 455px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin: 100px auto;
+}
+
+@media (max-width: 510px) {
+  .chat-container {
+    width: 90%;
+  }
+}
+
+.chat-container .header .left span:first-child {
+  font-weight: 700;
+  color: #344057;
+  font-size: 1.625rem;
+}
+
+.chat-container .header .left span:nth-child(2) {
+  color: #878F9D;
+}
+
+.chat-container .header .right {
+  color: #6c757d;
+}
+
+.chat-container input {
+  font-family: inherit;
+  font-weight: inherit;
+  max-width: 394px;
+  width: 100%;
+  border: none;
+  background-color: #DBE4EE;
+  outline: none;
+  color: #344057;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.chat-container .contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.chat-container .contact-list li img {
+  width: 79px;
+  height: 79px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.chat-container .contact-list li span {
+  font-size: 1.5rem;
+  color: #344057;
+} */
