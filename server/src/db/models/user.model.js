@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 // const jwt = require("jsonwebtoken")
-// const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt")
 // const { JWT_SECRET } = process.env
 
 const UserSchema = new mongoose.Schema(
@@ -19,6 +19,14 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide Password"],
     },
+//     isAvtarImageSet:{
+//             type:Boolean,
+//             default:false
+//     },
+//     avtarImage:{
+//         type:String,
+//         default:""
+// }
     // confirmPassword: {
     //   type: String,
     //   required: [false, "Please provide confirm Password"],
@@ -28,20 +36,20 @@ const UserSchema = new mongoose.Schema(
 );
 
 // for hashing password
-// UserSchema.pre("save", async function (next) {
+UserSchema.pre("save", async function (next) {
 
-//     if (this.isModified("password")) {
-//         this.password = await bcrypt.hash(this.password, 10)
-//     }
-//     next()
-// })
+    if (this.isModified("password")) {
+        this.password = await bcrypt.hash(this.password, 10)
+    }
+    next()
+})
 
 // for comparing hash
-// UserSchema.methods.comparePassword = async function (password, StoredPassword) {
+UserSchema.methods.comparePassword = async function (password, StoredPassword) {
 
-//     const ismatched = await bcrypt.compare(password, StoredPassword)
-//     return ismatched
-// }
+    const ismatched = await bcrypt.compare(password, StoredPassword)
+    return ismatched
+}
 
 // for creating / genrating token
 // UserSchema.methods.CreateToken = function () {

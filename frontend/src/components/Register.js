@@ -1,6 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
 import { registerUser } from "./utils/ApiRoutes";
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const Register = () => {
     confirmPassword: "",
   });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,23 +20,43 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
     const { username, email, password, confirmPassword } = formData;
-    const response = await registerUser({ username, email, password });
 
-    console.log(response, "register", "Himani");
-
-    // if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
+    // Validate before API call
+    if (!username || !email || !password || !confirmPassword) {
     //   setError("All fields are required");
-    //   return;
-    // }
+      toast('All fields are required', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        // transition: Bounce,
+        });
+      return;
+    }
 
-    // if (formData.password !== formData.confirmPassword) {
-    //   setError("Passwords do not match");
-    //   return;
-    // }
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
 
-    // console.log("Registration Successful", formData);
-    // Perform further actions like API call
+    try {
+      const response = await registerUser({ username, email, password });
+
+      if (response) {
+        setFormData({ username: "", email: "", password: "", confirmPassword: "" });
+        navigate('/login');
+      } else {
+        setError(response.message || "Registration failed");
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "Something went wrong");
+    }
   };
 
   return (
@@ -78,6 +100,7 @@ const Register = () => {
           Register
         </button>
       </form>
+      <Link to="/login">Login</Link>
     </div>
   );
 };
