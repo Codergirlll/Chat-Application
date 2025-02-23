@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema(
         email: {
             type: String,
             require: [true, "Please provide Email Id"],
-            // unique: true
+            unique: true
         },
         password: {
             type: String,
