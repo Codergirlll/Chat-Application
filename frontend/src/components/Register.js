@@ -1,5 +1,7 @@
 import { useState } from "react";
-// import "./Register.css";
+import axios from "axios";
+import { registerUser } from "./utils/ApiRoutes";
+
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -14,9 +16,12 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     setError("");
+    const {username,email,password,confirmPassword}= formData;
+    const response = await axios.post(registerUser({username,email,password})) ;
+    console.log(response,"register")
 
     if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
       setError("All fields are required");
