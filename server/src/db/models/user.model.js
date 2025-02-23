@@ -1,33 +1,31 @@
-
-const mongoose = require("mongoose")
-const jwt = require("jsonwebtoken")
-const bcrypt = require("bcrypt")
-const { JWT_SECRET } = process.env
+const mongoose = require("mongoose");
+// const jwt = require("jsonwebtoken")
+// const bcrypt = require("bcrypt")
+// const { JWT_SECRET } = process.env
 
 const UserSchema = new mongoose.Schema(
-    {
-        username: {
-            type: String,
-            require: [true, "Please provide Username"],
-            // unique: true
-        },
-        email: {
-            type: String,
-            require: [true, "Please provide Email Id"],
-            unique: true
-        },
-        password: {
-            type: String,
-            require: [true, "Please provide Password"]
-        },
-        confirmPassword: {
-            type: String,
-            require: [true, "Please provide confirm Password"]
-        }
+  {
+    username: {
+      type: String,
+      required: [true, "Please provide Username"],
+      // unique: true
     },
-    { timestamps: true }
-)
-
+    email: {
+      type: String,
+      required: [true, "Please provide Email Id"],
+      //   unique: true,
+    },
+    password: {
+      type: String,
+      required: [true, "Please provide Password"],
+    },
+    // confirmPassword: {
+    //   type: String,
+    //   required: [false, "Please provide confirm Password"],
+    // },
+  },
+  { timestamps: true }
+);
 
 // for hashing password
 // UserSchema.pre("save", async function (next) {
@@ -38,14 +36,12 @@ const UserSchema = new mongoose.Schema(
 //     next()
 // })
 
-
 // for comparing hash
 // UserSchema.methods.comparePassword = async function (password, StoredPassword) {
 
 //     const ismatched = await bcrypt.compare(password, StoredPassword)
 //     return ismatched
 // }
-
 
 // for creating / genrating token
 // UserSchema.methods.CreateToken = function () {
@@ -62,8 +58,6 @@ const UserSchema = new mongoose.Schema(
 //     return createToken
 // }
 
+const UserModel = mongoose.model("user", UserSchema);
 
-const UserModel = mongoose.model("user", UserSchema)
-
-
-module.exports = UserModel
+module.exports = UserModel;

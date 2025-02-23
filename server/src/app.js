@@ -1,10 +1,10 @@
-const express = require('express');
-const cors = require('cors');
-const http = require('http');
-const socketIo = require('socket.io');
-const Message_Model = require('./db/models/message');
-require('dotenv').config();
-require("./db/connection")
+const express = require("express");
+const cors = require("cors");
+const http = require("http");
+const socketIo = require("socket.io");
+const Message_Model = require("./db/models/message");
+require("dotenv").config();
+require("./db/connection");
 
 const app = express();
 // const server = http.createServer(app);
@@ -16,15 +16,13 @@ const app = express();
 // });
 
 app.use(
-    cors({
-      origin: "http://localhost:3000",
-      methods: ["GET", "POST"],
-    })
-  );
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  })
+);
 app.use(express.json());
-app.use("/",require("./routes/userRoute"))
-
-
+app.use("/", require("./routes/userRoute"));
 
 // API endpoint to get messages
 // app.get('/messages', async (req, res) => {
@@ -56,5 +54,5 @@ app.use("/",require("./routes/userRoute"))
 // });
 
 // Start the server
-const PORT = process.env.PORT
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

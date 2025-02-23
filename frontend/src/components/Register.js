@@ -2,7 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import { registerUser } from "./utils/ApiRoutes";
 
-
 const Register = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -16,24 +15,25 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    const {username,email,password,confirmPassword}= formData;
-    const response = await axios.post(registerUser({username,email,password})) ;
-    console.log(response,"register")
+    const { username, email, password, confirmPassword } = formData;
+    const response = await registerUser({ username, email, password });
 
-    if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
-      setError("All fields are required");
-      return;
-    }
+    console.log(response, "register", "Himani");
 
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
+    // if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
+    //   setError("All fields are required");
+    //   return;
+    // }
 
-    console.log("Registration Successful", formData);
+    // if (formData.password !== formData.confirmPassword) {
+    //   setError("Passwords do not match");
+    //   return;
+    // }
+
+    // console.log("Registration Successful", formData);
     // Perform further actions like API call
   };
 
