@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { loginUser, registerUser } from "./utils/ApiRoutes";
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +17,11 @@ const Login = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  useEffect(()=>{
+    if(localStorage.getItem("chat-app-user")){
+        navigate("/")
+    }
+  },[])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,6 +33,7 @@ const Login = () => {
             email: "",
             password: ""
         })
+        localStorage.setItem("chat-app-user",JSON.stringify(email))
         navigate('/')
     }
   };

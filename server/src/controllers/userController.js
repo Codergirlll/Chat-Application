@@ -31,6 +31,7 @@ exports.Register = async (req, res) => {
       return res.status(201).json({
         status: true,
         message: "User registered successfully",
+        user:newUser
       });
     }
 
