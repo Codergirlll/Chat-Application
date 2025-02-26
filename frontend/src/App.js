@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import "../src/Style/register.css";
 import Login from "./components/Login";
 import { ToastContainer } from 'react-toastify';
+import SetAvtar from "./components/SetAvtar";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/set-avtar" element={<SetAvtar />} />
       </Routes>
     </BrowserRouter>
     <ToastContainer />

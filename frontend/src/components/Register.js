@@ -41,21 +41,32 @@ const Register = () => {
     }
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      // setError("Passwords do not match");
+      toast('All fields are required', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        // transition: Bounce,
+        });
       return;
     }
 
     try {
-      const response = await registerUser({ username, email, password });
-
-      if (response) {
+      const {data} = await registerUser({ username, email, password });
+       
+      if (data) {
         setFormData({ username: "", email: "", password: "", confirmPassword: "" });
         navigate('/login');
       } else {
-        setError(response.message || "Registration failed");
+        setError(data.message || "Registration failed");
       }
     } catch (err) {
-      setError(err.response?.data?.message || "Something went wrong");
+      setError(err.data?.data?.message || "Something went wrong");
     }
   };
 
