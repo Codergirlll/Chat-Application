@@ -66,10 +66,10 @@ const Register = () => {
         });
         navigate("/login");
       } else {
-        setError(response.message || "Registration failed");
+        setError(data.message || "Registration failed");
       }
     } catch (err) {
-      setError(err.response?.data?.message || "Something went wrong");
+      setError(err.data?.data?.message || "Something went wrong");
     }
   };
 
