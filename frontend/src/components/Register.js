@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { registerUser } from "./utils/ApiRoutes";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Register = () => {
@@ -25,8 +25,7 @@ const Register = () => {
 
     // Validate before API call
     if (!username || !email || !password || !confirmPassword) {
-    //   setError("All fields are required");
-      toast('All fields are required', {
+      toast("All fields are required", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -36,12 +35,22 @@ const Register = () => {
         progress: undefined,
         theme: "light",
         // transition: Bounce,
-        });
+      });
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
+      toast("Passwords do not match", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        // transition: Bounce,
+      });
       return;
     }
 
@@ -49,8 +58,13 @@ const Register = () => {
       const response = await registerUser({ username, email, password });
 
       if (response) {
-        setFormData({ username: "", email: "", password: "", confirmPassword: "" });
-        navigate('/login');
+        setFormData({
+          username: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+        navigate("/login");
       } else {
         setError(response.message || "Registration failed");
       }
