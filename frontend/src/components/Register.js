@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { registerUser } from "./utils/ApiRoutes";
+import { registerUser } from "../utils/ApiRoutes";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
